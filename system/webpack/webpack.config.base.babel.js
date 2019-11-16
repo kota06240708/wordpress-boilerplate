@@ -1,14 +1,14 @@
-import conf from '../system/config';
-import PrettierPlugin from 'prettier-webpack-plugin';
-import glob from 'glob';
+import conf from '../config'
+import PrettierPlugin from 'prettier-webpack-plugin'
+import glob from 'glob'
 
-const entries = [];
+const entries = []
 
 glob
   .sync(`./${conf.src}/**/${conf.js}`, {
     ignore: `./${conf.src}/**/_${conf.js}`
   })
-  .map(file => entries.push(file));
+  .map(file => entries.push(file))
 
 export default {
   entry: entries,
@@ -40,4 +40,4 @@ export default {
   //   }
   // },
   plugins: [new PrettierPlugin()]
-};
+}
