@@ -16,7 +16,7 @@ const build = () => {
       })
     )
     .pipe(
-      rename(function (path) {
+      rename(path => {
         path.dirname += '/../' // 単純に今のパスに parentを追加しているだけ
       })
     )
