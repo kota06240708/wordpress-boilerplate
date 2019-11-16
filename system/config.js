@@ -2,7 +2,7 @@ export default {
   src: 'src',
   dist: 'dist',
   data: 'data',
-  pug: '*.pug',
+  php: '*.php',
   css: '*.scss',
   js: '*.js'
 };
