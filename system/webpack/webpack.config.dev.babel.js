@@ -1,14 +1,15 @@
 // import conf from './system/config';
-import path from 'path';
-import webpack from 'webpack';
-import merge from 'webpack-merge';
-import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin';
+import path from 'path'
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+import conf from '../config'
 
-import baseConfig from './webpack.config.base.babel';
+import baseConfig from './webpack.config.base.babel'
 
 export default merge(baseConfig, {
   output: {
-    path: `${path.resolve('')}/${process.env.NODE_ENV}`,
+    path: `${path.resolve('')}/${conf.dist}`,
     filename: './script/index.bundle.js',
     publicPath: '/'
   },
@@ -27,4 +28,4 @@ export default merge(baseConfig, {
     }),
     new webpack.NoEmitOnErrorsPlugin()
   ]
-});
+})

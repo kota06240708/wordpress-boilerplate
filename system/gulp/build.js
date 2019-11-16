@@ -20,4 +20,4 @@ gulp.task(
   )
 )
 
-gulp.task('build:dev', gulp.series('php:dev', 'css:dev', 'watch'))
+gulp.task('build:dev', gulp.series('php:dev', 'js:dev', 'css:dev', 'watch'))
