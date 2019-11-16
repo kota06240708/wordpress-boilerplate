@@ -1,14 +1,15 @@
-import path from 'path';
-import webpack from 'webpack';
-import merge from 'webpack-merge';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
-import saveLicense from 'uglify-save-license';
+import path from 'path'
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import saveLicense from 'uglify-save-license'
+import conf from '../config'
 
-import baseConfig from './webpack.config.base.babel';
+import baseConfig from './webpack.config.base.babel'
 
 export default merge(baseConfig, {
   output: {
-    path: `${path.resolve('')}/${process.env.NODE_ENV}`,
+    path: `${path.resolve('')}/${process.env.NODE_ENV}/${conf.htdocs}`,
     filename: './script/index.bundle.js'
   },
   mode: 'production',
@@ -27,4 +28,4 @@ export default merge(baseConfig, {
       }
     })
   ]
-});
+})

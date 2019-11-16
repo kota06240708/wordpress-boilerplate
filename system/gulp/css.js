@@ -1,24 +1,24 @@
-import conf from '../config';
+import conf from '../config'
 
-import gulp from 'gulp';
-import plumber from 'gulp-plumber';
-import rename from 'gulp-rename';
-import notify from 'gulp-notify';
-import postcss from 'gulp-postcss';
-import autoPrefixer from 'autoprefixer';
-import sass from 'gulp-sass';
-import mqpacker from 'css-mqpacker';
-import reporter from 'postcss-reporter';
-import stylelints from 'stylelint';
-import _import from 'postcss-easy-import';
-import easing from 'postcss-easings';
-import nested from 'postcss-nested';
-import cleancss from 'gulp-clean-css';
-import flexbugs from 'postcss-flexbugs-fixes';
-import calc from 'postcss-calc';
+import gulp from 'gulp'
+import plumber from 'gulp-plumber'
+import rename from 'gulp-rename'
+import notify from 'gulp-notify'
+import postcss from 'gulp-postcss'
+import autoPrefixer from 'autoprefixer'
+import sass from 'gulp-sass'
+import mqpacker from 'css-mqpacker'
+import reporter from 'postcss-reporter'
+import stylelints from 'stylelint'
+import _import from 'postcss-easy-import'
+import easing from 'postcss-easings'
+import nested from 'postcss-nested'
+import cleancss from 'gulp-clean-css'
+import flexbugs from 'postcss-flexbugs-fixes'
+import calc from 'postcss-calc'
 
 // entry
-const entryPath = `./${conf.src}/**/!(_)${conf.css}`;
+const entryPath = `./${conf.src}/**/!(_)${conf.css}`
 
 const opts = [
   _import({
@@ -32,7 +32,7 @@ const opts = [
   calc(),
   reporter({ clearMessages: true }),
   nested
-];
+]
 
 gulp.task('stylelint', () => {
   return gulp
@@ -42,8 +42,8 @@ gulp.task('stylelint', () => {
         errorHandler: notify.onError('Error: <%= error.message %>')
       })
     )
-    .pipe(postcss([stylelints, reporter({ clearMessages: true })]));
-});
+    .pipe(postcss([stylelints, reporter({ clearMessages: true })]))
+})
 
 gulp.task(
   'css:dev',
@@ -61,10 +61,14 @@ gulp.task(
         })
       )
       .pipe(postcss(opts))
-      .pipe(rename({ extname: '.css' }))
-      .pipe(gulp.dest(`./${conf.dist}`));
+      .pipe(
+        rename(path => {
+          path.dirname += '/../'
+        })
+      )
+      .pipe(gulp.dest(`./${conf.dist}/${conf.htdocs}`))
   })
-);
+)
 
 gulp.task(
   'css:prod',
@@ -87,7 +91,11 @@ gulp.task(
           compatibility: '*'
         })
       )
-      .pipe(rename({ extname: '.css' }))
-      .pipe(gulp.dest(`./${process.env.NODE_ENV}`));
+      .pipe(
+        rename(path => {
+          path.dirname += '/../'
+        })
+      )
+      .pipe(gulp.dest(`./${process.env.NODE_ENV}/${conf.htdocs}`))
   })
-);
+)

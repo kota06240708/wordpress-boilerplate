@@ -9,7 +9,7 @@ import baseConfig from './webpack.config.base.babel'
 
 export default merge(baseConfig, {
   output: {
-    path: `${path.resolve('')}/${conf.dist}`,
+    path: `${path.resolve('')}/${conf.dist}/${conf.htdocs}`,
     filename: './script/index.bundle.js',
     publicPath: '/'
   },

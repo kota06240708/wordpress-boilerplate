@@ -4,16 +4,16 @@ import gulp from 'gulp'
 gulp.task(
   'build',
   gulp.series(
-    'php:dev',
+    'php:prod',
     () => {
       return gulp
         .src(`./${conf.src}/**/*.+(jpg|jpeg|png|gif|svg)`)
-        .pipe(gulp.dest(process.env.NODE_ENV))
+        .pipe(gulp.dest(`${process.env.NODE_ENV}/${conf.htdocs}`))
     },
     () => {
       return gulp
         .src(`./${conf.src}/**/*.+(eot|ttf|woff|woff2)`)
-        .pipe(gulp.dest(`${process.env.NODE_ENV}`))
+        .pipe(gulp.dest(`${process.env.NODE_ENV}/${conf.htdocs}`))
     },
     'js:prod',
     'css:prod'
